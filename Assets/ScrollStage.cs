@@ -1,8 +1,4 @@
 ﻿using UnityEngine;
-#if UNITY_EDITOR
-using System.Linq;
-using System.Collections.Generic;
-#endif
 
 public class ScrollStage : MonoBehaviour {
 
@@ -43,17 +39,11 @@ public class ScrollStage : MonoBehaviour {
 		firstChild.SetAsLastSibling ();
 	}
 
-#if UNITY_EDITOR
-	[ContextMenu ("Sort Children By LocalPosition Z")]
-	private void SortChildren () {
-		List<Transform> temp = transform.Cast<Transform>()
-			.OrderBy( (c) => c.localPosition.z )
-			.ToList();
-
-		for(int i = 0, len = temp.Count; i < len; i++) {
-			Transform child = temp[i];
-			child.SetSiblingIndex (i);
+	[ContextMenu ("Align Children")]
+	private void AlignChildren () {
+		Vector3 origin = firstChild.localPosition;
+		foreach (Transform child in transform) {
+			child.localPosition = origin + transform.forward * unitSize * child.GetSiblingIndex();
 		}
 	}
-#endif
 }

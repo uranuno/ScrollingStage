@@ -1,3 +1,3 @@
 # Scrolling Stage
 
-![Scrolling Stage](Capture/scrolling-stage.gif)
+![Scrolling Stage](http://uranuno.github.io/ScrollingStage/out.gif)
